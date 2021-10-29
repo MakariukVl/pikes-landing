@@ -1,0 +1,218 @@
+// Write your styles here
+@mixin button-theme {
+  background-color: $accent-color;
+  border-radius: 3px;
+  color: white;
+  font-family: $font-headers;
+  font-weight: bold;
+  padding: 0.5em 2.2em;
+  border: none;
+}
+
+@mixin link {
+  color: white;
+  font-family: $font-headers;
+  font-size: 80%;
+  font-weight: bold;
+}
+
+body,
+html {
+  background-color: $bg-color;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: content-box;
+  width: 100vw;
+  overflow: hidden auto;
+}
+
+button {
+  @include button-theme();
+}
+
+a {
+  @include link();
+}
+
+::selection {
+  background: $selection-color;
+}
+
+%flexible-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+%logo-flex {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+%set-font-header {
+  text-align: center;
+  font: 200% $font-headers;
+  font-weight: bold;
+  color: $text-color-accent;
+}
+
+%set-font-main {
+  text-align: left;
+  font: 1rem $font-main;
+  font-size: 75%;
+  line-height: 150%;
+  color: $text-color;
+}
+
+.landing-logo {
+  @extend %logo-flex;
+  p {
+    font: 100% $font-headers;
+    text-align: center;
+    margin-left: 0.5rem;
+  }
+  span {
+    display: block;
+    font: xx-small $font-headers;
+  }
+}
+
+.header {
+  & {
+    background-image: $bg-image;
+    background-size: cover;
+    background-position-y: center;
+    border-bottom-right-radius: 33%;
+  }
+
+  .landing-logo {
+    color: $text-color-accent;
+  }
+
+  .header-wrap {
+    padding-left: 10%;
+    padding-right: 52%;
+
+    div:last-child {
+      margin-top: 3rem;
+      padding-bottom: 5rem;
+
+      :last-child {
+        margin-left: 8em;
+      }
+    }
+  }
+
+  &_heading {
+    @extend %set-font-header;
+    font-size: 300%;
+    line-height: 100%;
+    margin-block-end: 0.5em;
+    text-align: left;
+  }
+
+  &_text {
+    @extend %set-font-main;
+    color: $text-color-accent;
+    white-space: pre-line;
+  }
+}
+
+.section {
+  &_text {
+    @extend %set-font-header;
+  }
+
+  &_card_wrap {
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  &_card {
+    @extend %flexible-row;
+    margin: 20px auto;
+    background-color: $card-bg-color;
+    text-align: center;
+    border-radius: 5px;
+
+    .section_card_img {
+      border-radius: 5px;
+      margin: 15px;
+      flex-basis: 140%;
+      //   height: 150%;
+    }
+
+    .section_card_right_container {
+      margin: 15px;
+      padding: 30px;
+    }
+
+    .section_card_heading {
+      @extend %set-font-main;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 110%;
+      margin: 1.5em 0;
+    }
+
+    .section_card_text {
+      @extend %set-font-main;
+    }
+  }
+
+  &_banner {
+    @extend %flexible-row;
+    margin: 0 auto;
+    width: 65%;
+    background: linear-gradient(
+      45deg,
+      #{map-get($grad-colors, 'from')},
+      #{map-get($grad-colors, 'to')}
+    );
+    border-radius: 5px;
+    position: relative;
+    transform: translate(0, 50%);
+
+    .section_banner_text_wrap {
+      .section_banner_heading {
+        @extend %set-font-header;
+        font-size: 150%;
+        line-height: 100%;
+      }
+      .section_banner_text {
+        @extend %set-font-main;
+        margin-bottom: 2em;
+      }
+    }
+  }
+}
+
+.footer {
+  &-wrap {
+    @extend %flexible-row;
+    padding-top: 80px;
+    background-color: $card-bg-color;
+
+    .footer_logo {
+      color: $text-color;
+    }
+
+    .footer_text {
+      @extend %set-font-main;
+      //   padding: 0 30%;
+      flex-basis: 20%;
+    }
+
+    .footer-cr {
+      @extend %set-font-main;
+    }
+  }
+}
